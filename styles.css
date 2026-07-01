@@ -133,6 +133,8 @@ input:focus-visible {
   font-size: clamp(5rem, 24vw, 10rem);
   font-weight: 950;
   line-height: 0.9;
+  padding: 0;
+  -webkit-text-fill-color: currentColor;
 }
 
 .days-field input[data-digits="2"] {

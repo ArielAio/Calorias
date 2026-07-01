@@ -11,7 +11,7 @@
     <link rel="manifest" href="./manifest.webmanifest">
     <link rel="icon" href="./icons/icon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="./icons/icon-180.png">
-    <link rel="stylesheet" href="./styles.css?v=9">
+    <link rel="stylesheet" href="./styles.css?v=10">
   </head>
   <body>
     <main class="app">
@@ -29,7 +29,7 @@
       <section class="counter-card" aria-live="polite">
         <p class="eyebrow">Estou há</p>
         <label class="days-field">
-          <input id="daysInput" type="number" min="0" max="9999" step="1" inputmode="numeric" aria-label="Quantidade de dias sem consumir açúcar">
+          <input id="daysInput" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="4" aria-label="Quantidade de dias sem consumir açúcar">
           <span id="dayLabel">dias</span>
         </label>
         <h2>sem consumir açúcar</h2>
