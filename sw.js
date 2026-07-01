@@ -1,9 +1,10 @@
-const CACHE_NAME = "contagem-pwa-v15";
+const CACHE_NAME = "contagem-pwa-v16";
 const ASSETS = [
   "./",
   "./index.html",
-  "./styles.css?v=11",
-  "./app.js?v=8",
+  "./styles.css?v=12",
+  "./app.js?v=9",
+  "./motivational-quotes.js",
   "./vendor/canvas-confetti.browser.js?v=1",
   "./manifest.webmanifest",
   "./icons/icon.svg",

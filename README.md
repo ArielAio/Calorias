@@ -10,6 +10,7 @@ PWA simples para contar há quantos dias uma pessoa está sem consumir açúcar.
 - Persistência local no aparelho com `localStorage`.
 - Celebrações progressivas em marcos de 5, 10, 50 e 100 dias.
 - Contagem regressiva rápida ao recomeçar.
+- Três frases motivacionais por dia, com histórico para evitar repetições recentes.
 - Manifest e service worker para instalação como PWA.
 
 ## Tecnologias
@@ -37,6 +38,10 @@ http://localhost:4173
 ```bash
 npm test
 ```
+
+## Frases motivacionais
+
+Edite o arquivo `motivational-quotes.js` para adicionar, remover ou ajustar as frases exibidas no rodapé do app.
 
 ## Deploy
 

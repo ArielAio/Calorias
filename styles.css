@@ -232,6 +232,35 @@ button:disabled {
   color: var(--accent-dark);
 }
 
+.motivation {
+  min-height: 86px;
+  border-top: 1px solid rgba(105, 115, 134, 0.18);
+  padding-top: 16px;
+}
+
+.motivation__label,
+.motivation__quote {
+  margin: 0;
+}
+
+.motivation__label {
+  color: var(--green);
+  font-size: 0.82rem;
+  font-weight: 900;
+}
+
+.motivation__quote {
+  margin-top: 6px;
+  color: var(--ink);
+  font-size: clamp(1rem, 3.6vw, 1.18rem);
+  font-weight: 780;
+  line-height: 1.35;
+}
+
+.motivation__quote.is-changing {
+  animation: quote-fade 360ms ease-out;
+}
+
 @media (max-width: 520px) {
   .app {
     justify-content: flex-start;
@@ -306,10 +335,23 @@ button:disabled {
   }
 }
 
+@keyframes quote-fade {
+  0% {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .day-bump.is-visible,
   .days-field input.is-celebrating,
-  .days-field input.is-resetting {
+  .days-field input.is-resetting,
+  .motivation__quote.is-changing {
     animation: none;
   }
 

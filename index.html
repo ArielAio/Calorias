@@ -11,7 +11,7 @@
     <link rel="manifest" href="./manifest.webmanifest">
     <link rel="icon" href="./icons/icon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="./icons/icon-180.png">
-    <link rel="stylesheet" href="./styles.css?v=11">
+    <link rel="stylesheet" href="./styles.css?v=12">
   </head>
   <body>
     <main class="app">
@@ -39,10 +39,14 @@
           <button class="primary-action" id="addDayButton" type="button">+1 dia</button>
           <button class="secondary-action" id="resetButton" type="button">Recomeçar</button>
         </div>
+        <section class="motivation" aria-live="polite">
+          <p class="motivation__label">Para manter o ritmo</p>
+          <p class="motivation__quote" id="motivationQuote"></p>
+        </section>
       </section>
     </main>
 
     <script src="./vendor/canvas-confetti.browser.js?v=1" defer></script>
-    <script type="module" src="./app.js?v=8"></script>
+    <script type="module" src="./app.js?v=9"></script>
   </body>
 </html>

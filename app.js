@@ -1,4 +1,7 @@
+import { MOTIVATIONAL_QUOTES, localDateKey, quotesById, selectDailyQuotes } from "./motivational-quotes.js";
+
 const STORAGE_KEY = "contagem-pwa:v1";
+const MOTIVATION_STORAGE_KEY = "contagem-pwa:motivational-quotes:v1";
 const DAY = 24 * 60 * 60 * 1000;
 const MAX_DAYS = 9999;
 const RESET_DURATION = 650;
@@ -53,18 +56,37 @@ function saveDays(days) {
   localStorage.setItem(STORAGE_KEY, JSON.stringify({ days: clampDays(days) }));
 }
 
+function readMotivationState() {
+  try {
+    return JSON.parse(localStorage.getItem(MOTIVATION_STORAGE_KEY));
+  } catch {
+    return {};
+  }
+}
+
+function saveMotivationState(state) {
+  localStorage.setItem(MOTIVATION_STORAGE_KEY, JSON.stringify(state));
+}
+
+function randomSeed() {
+  return globalThis.crypto?.randomUUID?.() || String(Math.random()).slice(2);
+}
+
 function initApp() {
   const state = { days: readDays() };
   const daysInput = document.querySelector("#daysInput");
   const dayLabel = document.querySelector("#dayLabel");
   const summary = document.querySelector("#summary");
   const dayBump = document.querySelector("#dayBump");
+  const motivationQuote = document.querySelector("#motivationQuote");
   const addButton = document.querySelector("#addDayButton");
   const resetButton = document.querySelector("#resetButton");
   const installButton = document.querySelector("#installButton");
   let installPrompt = null;
   let celebrationTimer = null;
   let resetFrame = null;
+  let motivationQuotes = [];
+  let motivationIndex = 0;
 
   const updateText = () => {
     state.days = clampDays(state.days);
@@ -88,6 +110,33 @@ function initApp() {
     addButton.disabled = isResetting;
     resetButton.disabled = isResetting;
     daysInput.classList.toggle("is-resetting", isResetting);
+  };
+
+  const showMotivationQuote = () => {
+    if (!motivationQuotes.length) return;
+
+    motivationQuote.textContent = motivationQuotes[motivationIndex].text;
+    motivationQuote.classList.remove("is-changing");
+    void motivationQuote.offsetWidth;
+    motivationQuote.classList.add("is-changing");
+  };
+
+  const nextMotivationQuote = () => {
+    if (motivationQuotes.length < 2) return;
+    motivationIndex = (motivationIndex + 1) % motivationQuotes.length;
+    showMotivationQuote();
+  };
+
+  const setupMotivation = () => {
+    const quoteState = selectDailyQuotes(MOTIVATIONAL_QUOTES, readMotivationState(), localDateKey(), randomSeed());
+    saveMotivationState(quoteState);
+    motivationQuotes = quotesById(MOTIVATIONAL_QUOTES, quoteState.todayIds);
+    motivationIndex = motivationQuotes.length ? Math.floor(Math.random() * motivationQuotes.length) : 0;
+    showMotivationQuote();
+
+    if (motivationQuotes.length > 1) {
+      setInterval(nextMotivationQuote, 12000);
+    }
   };
 
   const fireConfetti = (options, delay = 0) => {
@@ -210,6 +259,7 @@ function initApp() {
     state.days += 1;
     persist();
     celebrate();
+    nextMotivationQuote();
   });
 
   resetButton.addEventListener("click", () => {
@@ -235,6 +285,7 @@ function initApp() {
   }
 
   render();
+  setupMotivation();
 }
 
 if (typeof document !== "undefined") {
