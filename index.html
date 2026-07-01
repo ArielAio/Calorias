@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f4b83f">
+    <meta name="description" content="PWA simples para contar dias sem consumir açúcar.">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="Contagem">
+    <title>Contagem</title>
+    <link rel="manifest" href="./manifest.webmanifest">
+    <link rel="icon" href="./icons/icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="./icons/icon-180.png">
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <main class="app">
+      <header class="topbar">
+        <div class="brand">
+          <img class="brand__icon" src="./icons/icon.svg" alt="" width="44" height="44">
+          <div>
+            <p>Contagem</p>
+            <h1>Sem açúcar</h1>
+          </div>
+        </div>
+        <button class="install-button" id="installButton" type="button" hidden>Instalar</button>
+      </header>
+
+      <section class="counter-card" aria-live="polite">
+        <p class="eyebrow">Estou há</p>
+        <label class="days-field">
+          <input id="daysInput" type="number" min="0" max="9999" step="1" inputmode="numeric" aria-label="Quantidade de dias sem consumir açúcar">
+          <span id="dayLabel">dias</span>
+        </label>
+        <h2>sem consumir açúcar</h2>
+        <p class="summary" id="summary">0 dias sem consumir açúcar</p>
+        <div class="actions">
+          <button class="primary-action" id="addDayButton" type="button">+1 dia</button>
+          <button class="secondary-action" id="resetButton" type="button">Recomeçar</button>
+        </div>
+      </section>
+    </main>
+
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>

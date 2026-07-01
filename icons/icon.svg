@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Contagem">
+  <rect width="512" height="512" rx="96" fill="#f4b83f"/>
+  <path d="M152 146h208a38 38 0 0 1 38 38v184a38 38 0 0 1-38 38H152a38 38 0 0 1-38-38V184a38 38 0 0 1 38-38Z" fill="#fff8ea"/>
+  <path d="M174 222h164M174 276h164M174 330h96" stroke="#1f2933" stroke-width="28" stroke-linecap="round"/>
+  <path d="M342 316l38 38 68-88" fill="none" stroke="#266b55" stroke-width="30" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
