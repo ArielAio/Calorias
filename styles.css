@@ -124,9 +124,10 @@ input:focus-visible {
 }
 
 .days-field input {
-  width: min(100%, 280px);
+  width: min(100%, 1.45ch);
   border: 0;
   border-bottom: 4px solid var(--accent);
+  appearance: textfield;
   background: transparent;
   color: var(--ink);
   font-size: clamp(5rem, 24vw, 10rem);
@@ -134,8 +135,22 @@ input:focus-visible {
   line-height: 0.9;
 }
 
+.days-field input[data-digits="2"] {
+  width: min(100%, 2.6ch);
+}
+
+.days-field input[data-digits="3"] {
+  width: min(100%, 3.8ch);
+}
+
+.days-field input[data-digits="4"] {
+  width: min(100%, 4.9ch);
+  font-size: clamp(4.2rem, 20vw, 8.5rem);
+}
+
 .days-field input::-webkit-inner-spin-button,
 .days-field input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
   margin: 0;
 }
 
@@ -153,6 +168,43 @@ input:focus-visible {
 .summary {
   color: var(--muted);
   font-weight: 750;
+}
+
+.day-bump {
+  justify-self: start;
+  margin: -6px 0 0;
+  border-radius: 8px;
+  background: #dff7e8;
+  color: var(--green-dark);
+  padding: 8px 12px;
+  font-weight: 900;
+  opacity: 0;
+  transform: translateY(8px) scale(0.96);
+  pointer-events: none;
+}
+
+.day-bump.is-visible {
+  animation: day-bump 900ms ease-out;
+}
+
+.days-field input.is-celebrating {
+  animation: day-pop 420ms ease-out;
+}
+
+.days-field input.is-resetting {
+  animation: reset-count 650ms ease-out;
+  color: var(--accent-dark);
+}
+
+input:disabled,
+button:disabled {
+  cursor: default;
+  opacity: 0.72;
+}
+
+.days-field input:disabled {
+  opacity: 1;
+  -webkit-text-fill-color: currentColor;
 }
 
 .actions {
@@ -192,11 +244,70 @@ input:focus-visible {
     flex-wrap: wrap;
   }
 
-  .days-field input {
-    width: 100%;
-  }
-
   .actions {
     grid-template-columns: 1fr;
+  }
+}
+
+@keyframes day-pop {
+  0% {
+    transform: scale(1);
+  }
+
+  45% {
+    transform: scale(1.06);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes day-bump {
+  0% {
+    opacity: 0;
+    transform: translateY(8px) scale(0.96);
+  }
+
+  12% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+  72% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.98);
+  }
+}
+
+@keyframes reset-count {
+  0% {
+    transform: translateY(0) scale(1);
+  }
+
+  35% {
+    transform: translateY(3px) scale(0.96);
+  }
+
+  100% {
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .day-bump.is-visible,
+  .days-field input.is-celebrating,
+  .days-field input.is-resetting {
+    animation: none;
+  }
+
+  .day-bump.is-visible {
+    opacity: 1;
+    transform: none;
   }
 }

@@ -8,6 +8,8 @@ PWA simples para contar há quantos dias uma pessoa está sem consumir açúcar.
 - Botão para adicionar mais um dia.
 - Botão para recomeçar a contagem.
 - Persistência local no aparelho com `localStorage`.
+- Celebrações progressivas em marcos de 5, 10, 50 e 100 dias.
+- Contagem regressiva rápida ao recomeçar.
 - Manifest e service worker para instalação como PWA.
 
 ## Tecnologias
@@ -16,6 +18,7 @@ PWA simples para contar há quantos dias uma pessoa está sem consumir açúcar.
 - CSS
 - JavaScript
 - PWA APIs: Web App Manifest, Service Worker e Cache API
+- Canvas Confetti 1.9.4 para a animação de celebração
 
 ## Como executar
 
